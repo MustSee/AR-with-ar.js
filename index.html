@@ -19,8 +19,12 @@ Content of the document......
     <!--</a-assets>-->
     <!--&lt;!&ndash; use your gltf model &ndash;&gt;-->
     <!--<a-entity gltf-model="##tree"></a-entity>-->
-    <a-text value="Hello, to the world!" color="green"
-            position="-0.9 0.2 -3" scale="1.5 1.5 1.5"></a-text>
+    <a-box>
+        <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
+        <a-text value="Hello, to the world!" color="green"
+                position="-0.9 0.2 -3" scale="1.5 1.5 1.5"></a-text>
+    </a-box>
+
     <a-marker-camera preset='hiro'></a-marker-camera>
 </a-scene>
 </body>
