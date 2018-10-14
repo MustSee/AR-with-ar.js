@@ -12,19 +12,47 @@ Content of the document......
 <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
 <body style='margin : 0px; overflow: hidden;'>
-<a-scene embedded arjs='sourceType: webcam;'>
-    <!-- define your gltf asset -->
-    <!--<a-assets>-->
-        <!--<a-asset-item id="tree" src="model.gltf "></a-asset-item>-->
-    <!--</a-assets>-->
-    <!--&lt;!&ndash; use your gltf model &ndash;&gt;-->
-    <!--<a-entity gltf-model="##tree"></a-entity>-->
-    <a-box>
-        <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
-        <a-text value="Hello, to the world!" color="green"
-                position="-0.9 0.2 -3" scale="1.5 1.5 1.5"></a-text>
-    </a-box>
+<a-scene embedded arjs='sourceType: webcam;' fog="type: linear; near: 2; far: 40; color: #aef5ff">
+    <!-- Mixins -->
+    <a-assets>
+        <a-mixin id="font" text="bevelEnabled: true; bevelSize:0.0.5; bevelThickness:0.1"></a-mixin>
+    </a-assets>
 
+    <!-- Basic world -->
+    <a-entity camera gamepad-controls look-controls wasd-controls position="0 1.8 0"></a-entity>
+    <a-entity light="type: hemisphere; color: #FFF; groundColor: #555; intensity: 1"></a-entity>
+    <a-plane rotation="90 0 0" width="100" height="100" color="#669900" position="0 0 49"></a-plane>
+    <a-sky color="#aef5ff"></a-sky>
+
+    <!-- Frontpage -->
+    <a-image src="http://immersionftw.com/webvr/assets/splash.png" width="20" height="20" position="1.2 3 -6"></a-image>
+
+    <!-- Slide woods -->
+    <a-entity position="0 0 30" rotation="0 180 0">
+        <a-model scale="1.2 1.7 1.2"
+                 src="https://cdn.rawgit.com/CarpeDMT/CarpeDMT.github.io/master/trees.dae"></a-model>
+
+        <a-entity text="text: What is WebVR?" material="color: #cff" position="-4 1 22" mixin="font"
+                  rotation="-20 0 0"></a-entity>
+        <a-entity text="text: Why does WebVR matter?" material="color: #f00" position="-11.5 3 10" rotation="20 45 0"
+                  mixin="font"></a-entity>
+        <a-entity text="text: How does WebVR work?" material="color: #0f0" position="-12.8 0.1 2.6" rotation="290 20 0"
+                  mixin="font"></a-entity>
+        <a-entity text="text: What are the limitations of WebVR?" material="color: #f0f" position="-7 2 -15"
+                  rotation="0 270 0" mixin="font"></a-entity>
+        <a-entity text="text: How to get started on WebVR?" material="color: #00f" position="12 0.2 -6"
+                  rotation="320 -150 0" mixin="font"></a-entity>
+    </a-entity>
+
+    <!-- Members container -->
+    <a-entity id="members" position="-25 2 40">
+        <a-animation attribute="rotation"
+                     to="0 360 0"
+                     dur="100000"
+                     fill="forwards"
+                     repeat="indefinite"
+                     easing="linear"></a-animation>
+    </a-entity>
     <a-marker-camera preset='hiro'></a-marker-camera>
 </a-scene>
 </body>
